@@ -4,12 +4,12 @@ let lilLetters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm
 let bigLetters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"] // AA
 let numeros = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 let symbols = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")","!", "@", "#", "$", "%", "^", "&", "*", "(", ")"] //AA
-let usableArray = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+let usableArray = [];
 let thePass = [];
 
 
 function generatePassword() {
-  let passLength = prompt("How long of a password do you need to generate?")
+  let passLength = prompt("How long of a password do you need to generate? \nIt must be between 8 - 128 characters")
   if(passLength < 8 ){
     alert("You need a minimum of 8 characters for your password!")
       return thePass     
@@ -19,9 +19,11 @@ function generatePassword() {
       return thePass    
   }
   else{
-  let useCaps = confirm("Press OK to include Capital letters")//AA
-  let useNumeros = confirm("Press OK to include numbers")
-  let useSymbols = confirm("Press OK to include symbols")
+  let useLower = confirm("Press OK to include lowercase letters");
+  let useCaps = confirm("Press OK to include Capital letters");//AA
+  let useNumeros = confirm("Press OK to include numbers");
+  let useSymbols = confirm("Press OK to include symbols");
+  
   
 
 
@@ -30,6 +32,12 @@ function generatePassword() {
   console.log(useNumeros)
   console.log(useSymbols)
 // these if statements check to see what chars they want in their password and adds them to an array that the for loop will eventually iterate through
+
+if (!useSymbols && !useCaps && !useNumeros && !useLower){
+  alert("You need to choose at least one character type to include in your password")
+      return thePass   
+
+}
   if (useSymbols) {
     usableArray = usableArray.concat(symbols)
     
@@ -39,6 +47,9 @@ function generatePassword() {
   }
   if (useNumeros) {
     usableArray = usableArray.concat(numeros)
+  }
+  if (useLower) {
+    usableArray = usableArray.concat(lilLetters)
   }
  
   console.log(usableArray)
@@ -52,7 +63,7 @@ function generatePassword() {
 // this stores the password in another variable to return, so that we can reset the variables to initial values in case they run app back to back
 let displayedPass = thePass;
 thePass = [];
-usableArray= ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']; 
+usableArray= []; 
 
 
   return displayedPass;
