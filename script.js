@@ -29,7 +29,7 @@ function generatePassword() {
   console.log(useCaps)
   console.log(useNumeros)
   console.log(useSymbols)
-
+// these if statements check to see what chars they want in their password and adds them to an array that the for loop will eventually iterate through
   if (useSymbols) {
     usableArray = usableArray.concat(symbols)
     
@@ -41,12 +41,7 @@ function generatePassword() {
     usableArray = usableArray.concat(numeros)
   }
  
-
-
-
-
   console.log(usableArray)
-
 
   for (i = 0; i < passLength; i++) {
     thePass += usableArray[Math.floor(Math.random() * usableArray.length)]
@@ -54,6 +49,7 @@ function generatePassword() {
   }
 }
 
+// this stores the password in another variable to return, so that we can reset the variables to initial values in case they run app back to back
 let displayedPass = thePass;
 thePass = [];
 usableArray= ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']; 
@@ -61,7 +57,7 @@ usableArray= ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', '
 
   return displayedPass;
 }
-// Write password to the #password input  AA 
+// Write password to the #password input....  not written by AA, but much appreciated by him
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
@@ -71,5 +67,5 @@ function writePassword() {
 }
 
 
-// Add event listener to generate button  AA
+// not written by AA, but much appreciated by him. Add event listener to generate button  
 generateBtn.addEventListener("click", writePassword);
