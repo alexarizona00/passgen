@@ -3,17 +3,26 @@ var generateBtn = document.querySelector("#generate");
 let lilLetters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
 let bigLetters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"] // AA
 let numeros = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
-let symbols = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")"] //AA
+let symbols = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")","!", "@", "#", "$", "%", "^", "&", "*", "(", ")"] //AA
 let usableArray = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 let thePass = [];
 
 
 function generatePassword() {
   let passLength = prompt("How long of a password do you need to generate?")
+  if(passLength < 8 ){
+    alert("You need a minimum of 8 characters for your password!")
+      return thePass     
+  }
+  else if(passLength > 128){
+    alert("Your password cannot be more than 128 characters!")
+      return thePass    
+  }
+  else{
   let useCaps = confirm("Press OK to include Capital letters")//AA
   let useNumeros = confirm("Press OK to include numbers")
   let useSymbols = confirm("Press OK to include symbols")
-
+  
 
 
   console.log(passLength)
@@ -21,31 +30,36 @@ function generatePassword() {
   console.log(useNumeros)
   console.log(useSymbols)
 
+  if (useSymbols) {
+    usableArray = usableArray.concat(symbols)
+    
+  }
   if (useCaps) {
     usableArray = usableArray.concat(bigLetters)
   }
-
   if (useNumeros) {
     usableArray = usableArray.concat(numeros)
   }
+ 
 
-  if (useSymbols) {
-    usableArray = usableArray.concat(symbols)
-  }
+
+
 
   console.log(usableArray)
 
 
-   for (i = 0; i < passLength; i++) {
-    thePass +=  usableArray[Math.floor(Math.random() * usableArray.length)]
+  for (i = 0; i < passLength; i++) {
+    thePass += usableArray[Math.floor(Math.random() * usableArray.length)]
 
-    }
+  }
+}
+
+let displayedPass = thePass;
+thePass = [];
+usableArray= ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']; 
 
 
-
-console.log(thePass)
-  return thePass
-
+  return displayedPass;
 }
 // Write password to the #password input  AA 
 function writePassword() {
