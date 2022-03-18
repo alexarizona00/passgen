@@ -1,0 +1,1 @@
+this is a password generator that I created for a homework assignment. alex albright 3/18/22
